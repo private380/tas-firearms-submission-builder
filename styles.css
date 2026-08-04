@@ -1,0 +1,859 @@
+
+:root{--navy:#102a43;--blue:#1769aa;--green:#1e5b46;--ink:#18251f;--muted:#5f6c66;--paper:#f6f4ee;--white:#fff;--line:#d8ddd7;--soft:#e8efe9;--gold:#c38b32;--danger:#a23b32;--ok:#16794b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.52 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}.shell{max-width:930px;margin:auto;padding:18px}.hero{background:linear-gradient(135deg,#102a43,#1769aa);color:white;padding:38px 0}.hero h1{font:700 clamp(2.2rem,7vw,4rem)/1.02 Georgia,serif;margin:7px 0 14px}.hero p{max-width:760px;font-size:1.1rem}.eyebrow{font-size:.78rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;opacity:.85}.deadline{display:inline-block;margin-top:12px;padding:8px 12px;border-radius:999px;background:#ffffff1f}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:24px;margin-top:18px;box-shadow:0 10px 35px #102a4310}.hidden{display:none!important}
+.progress-wrap{position:sticky;top:0;z-index:10;background:#f6f4eef0;backdrop-filter:blur(10px);padding:12px 0}.progress-track{height:10px;background:#dce5df;border-radius:999px;overflow:hidden}.progress-bar{height:100%;background:var(--green);width:0}.progress-meta{display:flex;justify-content:space-between;margin-top:7px;color:var(--muted);font-size:.9rem}
+h2{font:700 1.65rem/1.18 Georgia,serif;margin:0 0 12px}h3{font:700 1.15rem/1.2 Georgia,serif;margin:22px 0 10px}.muted{color:var(--muted)}.notice{padding:14px;border-left:5px solid var(--blue);background:#edf5fa;border-radius:9px;margin:18px 0}.principles{display:grid;gap:6px;padding:16px;background:#edf2ee;border-radius:10px}.principles strong{margin-bottom:4px}
+.field{display:block;font-weight:700;margin-top:15px}.field input,.field textarea{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid #b8c4bc;border-radius:10px;background:white}.field textarea{min-height:105px;resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;margin-top:22px}.btn{border:0;border-radius:10px;padding:12px 17px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.primary{background:var(--green);color:white}.secondary{background:#e6ece8;color:var(--ink)}
+.amendment-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.guide-link{white-space:nowrap;color:var(--green);font-weight:800}.official-box{background:var(--navy);color:white;padding:17px;border-radius:12px;margin:17px 0}.official-box p{margin:6px 0 0}.plain{font-size:1.05rem}
+.comparison{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:18px 0}.comparison>div:not(.arrow){padding:17px;border:1px solid var(--line);border-radius:10px;background:#f8faf8}.comparison>div:last-child{background:#e9f2ec}.comparison span{display:block;margin-bottom:7px;font-size:.73rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}.comparison p{margin:0}.arrow{display:grid;place-items:center;color:var(--gold);font-size:28px;font-weight:850}
+details{border:1px solid var(--line);border-radius:10px;padding:13px}summary{font-weight:800;cursor:pointer}
+.options{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.option{padding:12px 8px;border:1px solid #b8c4bc;border-radius:10px;background:white;font-weight:800;cursor:pointer}.option.active{background:#e8f1ec;border-color:var(--green);box-shadow:0 0 0 2px #1e5b4620}
+.reasons{display:grid;gap:9px}.reason{display:flex;gap:10px;align-items:flex-start;padding:11px;border:1px solid var(--line);border-radius:10px}.reason input{margin-top:4px}
+.summary-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}.positionTotals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.positionTotals div{text-align:center;border:1px solid var(--line);padding:10px;border-radius:10px}.positionTotals strong{display:block;font-size:1.35rem}
+.output{width:100%;min-height:560px;padding:14px;border:1px solid #b8c4bc;border-radius:11px}
+.modal-backdrop{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}.modal{max-width:540px;width:100%;background:white;border-radius:16px;padding:22px}.missing-list{max-height:230px;overflow:auto;background:#f6f8f6;border-radius:9px;padding:12px}
+footer{padding:26px 4px 45px;color:var(--muted);font-size:.9rem}
+@media(max-width:700px){.comparison{grid-template-columns:1fr}.comparison .arrow{transform:rotate(90deg);height:24px}.options{grid-template-columns:1fr 1fr}.amendment-head{display:block}.guide-link{display:inline-block;margin:4px 0 10px}}
+@media(max-width:470px){.shell{padding:14px}.card{padding:17px}.options{grid-template-columns:1fr}.actions .btn{flex:1}.positionTotals{grid-template-columns:1fr 1fr}}
+@media print{.hero,.progress-wrap,.actions,footer,.guide-link{display:none}.card{border:0;box-shadow:none}.output{border:0;min-height:0}}
+
+
+.formatted-preview{
+  margin-top:18px;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+}
+.edit-text{margin-top:16px}
+.edit-text summary{color:var(--green)}
+.document-page{max-width:780px;margin:auto;color:#1d2521;background:white}
+.document-header{padding-bottom:22px;border-bottom:4px solid var(--green)}
+.document-kicker{margin-bottom:8px;font-size:11px;font-weight:850;letter-spacing:.13em;text-transform:uppercase;color:var(--green)}
+.document-header h1{margin:0;font:700 32px/1.12 Georgia,"Times New Roman",serif}
+.document-header p{margin:8px 0 0;color:var(--muted)}
+.document-recipient{margin:24px 0;padding:16px;background:#f1f5f1;border-left:4px solid var(--green)}
+.document-intro{font-size:1.04rem}
+.document-details{margin:26px 0;padding:20px;border:1px solid var(--line);border-radius:9px}
+.document-details h2{font-size:20px}
+.document-details dl{display:grid;grid-template-columns:150px 1fr;gap:8px 15px;margin:0}
+.document-details dt{font-weight:800;color:var(--muted)}
+.document-details dd{margin:0}
+.document-amendment{margin:32px 0;padding-top:24px;border-top:2px solid #d6ddd8;break-inside:avoid-page}
+.document-amendment-number{margin-bottom:7px;font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.document-amendment h2{margin:0 0 14px;font-size:22px}
+.document-position{display:flex;align-items:center;gap:12px;margin:12px 0 17px}
+.document-position span{font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.document-position strong{padding:5px 10px;border-radius:999px;background:#e8f1ec;color:var(--green)}
+.document-subsection{margin:15px 0}
+.document-subsection h3{margin:0 0 7px;font-size:16px}
+.document-subsection ul{margin:0;padding-left:21px}
+.document-subsection li{margin:5px 0}
+.document-subsection p{margin:0}
+.document-signoff{margin-top:38px;padding-top:22px;border-top:2px solid var(--green)}
+.print-document{display:none}
+
+@page{
+  size:A4;
+  margin:16mm 16mm 18mm;
+}
+@media print{
+  body.printing-submission *{visibility:hidden!important}
+  body.printing-submission #printDocument,
+  body.printing-submission #printDocument *{visibility:visible!important}
+  body.printing-submission #printDocument{
+    display:block!important;
+    position:absolute;
+    inset:0;
+    width:100%;
+    color:#111;
+    background:#fff;
+    font:10.5pt/1.42 Arial,Helvetica,sans-serif;
+  }
+  body.printing-submission .document-page{max-width:none}
+  body.printing-submission .document-header h1{font-size:23pt}
+  body.printing-submission .document-amendment{margin:18pt 0;padding-top:13pt}
+  body.printing-submission .document-amendment h2{font-size:14pt}
+  body.printing-submission .document-subsection h3{font-size:11pt}
+  body.printing-submission .document-details{break-inside:avoid}
+  body.printing-submission .document-amendment{
+    break-inside:auto;
+    page-break-inside:auto;
+  }
+  body.printing-submission .document-position,
+  body.printing-submission .document-subsection h3{
+    break-after:avoid;
+    page-break-after:avoid;
+  }
+  body.printing-submission li,
+  body.printing-submission p{
+    orphans:3;
+    widows:3;
+  }
+}
+@media(max-width:600px){
+  .formatted-preview{padding:18px}
+  .document-details dl{grid-template-columns:1fr;gap:2px}
+  .document-details dd{margin-bottom:8px}
+}
+
+
+/* V4.2 PDF polish */
+.document-summary{
+  margin:30px 0 36px;
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fafbf9;
+}
+.document-summary h2{margin-top:0}
+.summary-counts{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:16px 0 20px;
+}
+.summary-counts>div{
+  padding:12px;
+  border-radius:9px;
+  text-align:center;
+  border:1px solid transparent;
+}
+.summary-counts strong{
+  display:block;
+  font-size:1.45rem;
+}
+.summary-counts span{
+  display:block;
+  margin-top:2px;
+  font-size:.78rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.summary-counts .support{background:#e7f3eb;border-color:#9fc7ab;color:#1f6b3b}
+.summary-counts .oppose{background:#f8e7e4;border-color:#d7a39a;color:#9d3328}
+.summary-counts .unsure{background:#fff3d6;border-color:#dfc170;color:#85620b}
+.summary-counts .no-comment{background:#ecefed;border-color:#c8ceca;color:#58625d}
+
+.summary-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.9rem;
+}
+.summary-table th,
+.summary-table td{
+  padding:8px 9px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+  text-align:left;
+}
+.summary-table th{
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--muted);
+}
+.summary-table td:first-child{width:45px}
+.summary-table td:last-child{width:105px}
+
+.summary-badge,
+.document-position-badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:.72rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  white-space:nowrap;
+}
+.summary-badge.support,
+.document-position-badge.support{background:#dff0e4;color:#176033;border:1px solid #8db99a}
+.summary-badge.oppose,
+.document-position-badge.oppose{background:#f6dfdb;color:#982d23;border:1px solid #cf9289}
+.summary-badge.unsure,
+.document-position-badge.unsure{background:#fff0c7;color:#795800;border:1px solid #d8b85d}
+.summary-badge.no-comment,
+.document-position-badge.no-comment{background:#e9ecea;color:#4e5853;border:1px solid #bfc6c1}
+
+.document-amendment{
+  padding:20px 20px 18px;
+  border:1px solid var(--line);
+  border-left:6px solid #9aa69f;
+  border-radius:10px;
+  background:#fff;
+}
+.document-amendment.position-support{border-left-color:#2d824b;background:#fbfefc}
+.document-amendment.position-oppose{border-left-color:#b33d32;background:#fffdfd}
+.document-amendment.position-unsure{border-left-color:#c1921d;background:#fffefa}
+.document-amendment.position-no-comment{border-left-color:#7c8781;background:#fcfcfc}
+.document-amendment-top{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+}
+.document-amendment-top h2{margin-bottom:0}
+
+@media(max-width:600px){
+  .summary-counts{grid-template-columns:1fr 1fr}
+  .summary-table{font-size:.8rem}
+  .document-amendment-top{display:block}
+  .document-position-badge{margin-top:10px}
+}
+
+/* Prevent hidden print content from occupying layout space */
+#printDocument{
+  display:none!important;
+  width:0!important;
+  height:0!important;
+  overflow:hidden!important;
+}
+
+/* Print only the generated submission */
+@media print{
+  html,body{
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+  }
+  body.printing-submission{
+    min-height:0!important;
+    height:auto!important;
+  }
+  body.printing-submission > *:not(#printDocument){
+    display:none!important;
+  }
+  body.printing-submission #printDocument{
+    display:block!important;
+    width:auto!important;
+    height:auto!important;
+    overflow:visible!important;
+    position:static!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  body.printing-submission #printDocument,
+  body.printing-submission #printDocument *{
+    visibility:visible!important;
+  }
+  body.printing-submission .document-page{
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  body.printing-submission .document-summary{
+    break-after:page;
+    page-break-after:always;
+  }
+  body.printing-submission .document-amendment{
+    break-inside:avoid-page;
+    page-break-inside:avoid;
+    margin:0 0 11mm;
+    padding:5mm;
+  }
+  body.printing-submission .document-amendment.position-no-comment{
+    break-inside:avoid;
+  }
+  body.printing-submission .summary-table tr{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  body.printing-submission .document-signoff{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+}
+
+@media print and (max-width:210mm){
+  body.printing-submission .summary-table{
+    font-size:8.5pt;
+  }
+}
+
+
+/* V5 structured PDF layout */
+.pdf-cover,.pdf-summary-page{background:#fff}
+.pdf-cover-inner{
+  min-height:245mm;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:18mm 12mm;
+  border:1px solid #d8ddd7;
+  border-top:10px solid var(--green);
+}
+.pdf-cover h1{
+  margin:10mm 0 5mm;
+  font:700 31pt/1.08 Georgia,"Times New Roman",serif;
+}
+.pdf-cover-subtitle{max-width:145mm;font-size:14pt;color:var(--muted)}
+.pdf-cover-details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6mm 10mm;
+  margin-top:20mm;
+  padding:8mm;
+  background:#f1f5f1;
+  border-left:5px solid var(--green);
+}
+.pdf-cover-details div{display:flex;flex-direction:column;gap:2mm}
+.pdf-cover-details span{
+  font-size:8.5pt;
+  font-weight:850;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
+.pdf-cover-meta{
+  margin-top:auto;
+  padding-top:12mm;
+  display:flex;
+  justify-content:space-between;
+  gap:10mm;
+  color:var(--muted);
+  font-size:9pt;
+}
+.pdf-summary-page{min-height:245mm;padding:12mm 10mm}
+.pdf-summary-page h1{margin:3mm 0 4mm;font:700 26pt/1.1 Georgia,"Times New Roman",serif}
+.summary-sentence{margin:0 0 7mm;font-size:11pt}
+.compact-summary-table{width:100%;max-width:115mm;margin:7mm auto 0;font-size:9pt}
+.compact-summary-table th,.compact-summary-table td{padding:2.2mm 3mm}
+.compact-summary-table td:first-child{width:auto}
+.compact-summary-table td:last-child{width:45mm}
+.pdf-body{padding-top:3mm}
+
+@media print{
+  body.printing-submission .pdf-cover{
+    break-after:page;
+    page-break-after:always;
+  }
+  body.printing-submission .pdf-summary-page{
+    break-after:page;
+    page-break-after:always;
+  }
+  body.printing-submission .pdf-cover-inner,
+  body.printing-submission .pdf-summary-page{min-height:245mm}
+  body.printing-submission .summary-counts{
+    grid-template-columns:repeat(4,1fr);
+    gap:3mm;
+  }
+  body.printing-submission .summary-counts>div{padding:3mm 2mm}
+  body.printing-submission .document-amendment{
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+    margin:0 0 6mm;
+    padding:5mm;
+  }
+  body.printing-submission .document-amendment-top,
+  body.printing-submission .document-subsection,
+  body.printing-submission ul,
+  body.printing-submission li{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  body.printing-submission .document-amendment h2{font-size:13pt}
+  body.printing-submission .document-subsection{margin:3mm 0}
+}
+@media screen{
+  .formatted-preview .pdf-cover-inner,
+  .formatted-preview .pdf-summary-page{min-height:auto}
+  .formatted-preview .pdf-cover,
+  .formatted-preview .pdf-summary-page{
+    margin-bottom:28px;
+    padding-bottom:28px;
+    border-bottom:3px solid var(--line);
+  }
+}
+
+
+/* =========================================================
+   VERSION 5.1 VERIFIED PRINT RULES
+   These rules intentionally override all earlier print rules.
+   ========================================================= */
+
+.version-note{
+  font-size:.75rem;
+  color:var(--muted);
+}
+
+.compact-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3mm 5mm;
+  margin-top:7mm;
+}
+.summary-position-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:3mm;
+  padding:2.2mm 3mm;
+  border:1px solid var(--line);
+  border-radius:5mm;
+  background:#fff;
+}
+.summary-number{
+  display:grid;
+  place-items:center;
+  width:8mm;
+  height:8mm;
+  border-radius:50%;
+  background:#eef2ef;
+  color:var(--ink);
+  font-weight:900;
+  font-size:9pt;
+}
+
+@page{
+  size:A4 portrait;
+  margin:14mm 14mm 16mm;
+}
+
+@media print{
+  html,body{
+    width:auto!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+  }
+
+  body.printing-submission{
+    margin:0!important;
+    padding:0!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+
+  body.printing-submission > *:not(#printDocument){
+    display:none!important;
+  }
+
+  body.printing-submission #printDocument{
+    display:block!important;
+    position:static!important;
+    width:auto!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  body.printing-submission #printDocument,
+  body.printing-submission #printDocument *{
+    visibility:visible!important;
+  }
+
+  body.printing-submission .document-page{
+    display:block!important;
+    width:auto!important;
+    max-width:none!important;
+    height:auto!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  /* Exactly one cover page */
+  body.printing-submission .pdf-cover{
+    display:block!important;
+    height:267mm!important;
+    min-height:267mm!important;
+    max-height:267mm!important;
+    overflow:hidden!important;
+    margin:0!important;
+    padding:0!important;
+    break-after:page!important;
+    page-break-after:always!important;
+  }
+
+  body.printing-submission .pdf-cover-inner{
+    box-sizing:border-box!important;
+    height:255mm!important;
+    min-height:255mm!important;
+    max-height:255mm!important;
+    margin:0!important;
+    padding:16mm 12mm!important;
+  }
+
+  /* Exactly one summary page */
+  body.printing-submission .pdf-summary-page{
+    box-sizing:border-box!important;
+    display:block!important;
+    height:267mm!important;
+    min-height:267mm!important;
+    max-height:267mm!important;
+    overflow:hidden!important;
+    margin:0!important;
+    padding:10mm 8mm!important;
+    break-after:page!important;
+    page-break-after:always!important;
+  }
+
+  body.printing-submission .pdf-summary-page h1{
+    margin:2mm 0 3mm!important;
+    font-size:23pt!important;
+  }
+
+  body.printing-submission .summary-sentence{
+    margin:0 0 5mm!important;
+    font-size:10pt!important;
+  }
+
+  body.printing-submission .summary-counts{
+    display:grid!important;
+    grid-template-columns:repeat(4,1fr)!important;
+    gap:2.5mm!important;
+    margin:4mm 0 5mm!important;
+  }
+
+  body.printing-submission .summary-counts>div{
+    padding:2.5mm 1.5mm!important;
+  }
+
+  body.printing-submission .summary-counts strong{
+    font-size:16pt!important;
+  }
+
+  body.printing-submission .summary-counts span{
+    font-size:7.5pt!important;
+  }
+
+  body.printing-submission .compact-summary-grid{
+    display:grid!important;
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:2.4mm 4mm!important;
+    margin-top:5mm!important;
+  }
+
+  body.printing-submission .summary-position-item{
+    padding:1.7mm 2.5mm!important;
+    min-height:9mm!important;
+  }
+
+  body.printing-submission .summary-number{
+    width:7mm!important;
+    height:7mm!important;
+    font-size:8pt!important;
+  }
+
+  body.printing-submission .summary-badge{
+    padding:1.2mm 2.5mm!important;
+    font-size:7pt!important;
+  }
+
+  /* Start detailed content on a clean page */
+  body.printing-submission .pdf-body{
+    display:block!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  body.printing-submission .document-recipient,
+  body.printing-submission .document-intro{
+    display:none!important;
+  }
+
+  /*
+   * One amendment per page. This is deliberate:
+   * no amendment heading, reasons or comments can be split
+   * across two pages.
+   */
+  body.printing-submission .document-amendment{
+    box-sizing:border-box!important;
+    display:block!important;
+    width:100%!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    padding:7mm!important;
+    border-radius:3mm!important;
+    break-before:page!important;
+    page-break-before:always!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    font-size:10pt!important;
+    line-height:1.38!important;
+  }
+
+  /* First detailed amendment already follows a forced summary break */
+  body.printing-submission .pdf-body .document-amendment:first-of-type{
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+
+  body.printing-submission .document-amendment-top{
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:space-between!important;
+    gap:7mm!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+
+  body.printing-submission .document-amendment h2{
+    margin:1mm 0 3mm!important;
+    font-size:15pt!important;
+    line-height:1.18!important;
+  }
+
+  body.printing-submission .document-amendment-number{
+    font-size:8pt!important;
+  }
+
+  body.printing-submission .document-position-badge{
+    flex:0 0 auto!important;
+    padding:1.8mm 3.5mm!important;
+    font-size:8pt!important;
+  }
+
+  body.printing-submission .document-subsection{
+    margin:4mm 0 0!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+
+  body.printing-submission .document-subsection h3{
+    margin:0 0 2mm!important;
+    font-size:11pt!important;
+    break-after:avoid!important;
+    page-break-after:avoid!important;
+  }
+
+  body.printing-submission .document-subsection ul{
+    margin:0!important;
+    padding-left:6mm!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+
+  body.printing-submission .document-subsection li{
+    margin:1.2mm 0!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+
+  body.printing-submission .document-signoff{
+    break-before:page!important;
+    page-break-before:always!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+    margin:0!important;
+    padding:20mm 7mm 0!important;
+  }
+}
+
+@media screen{
+  .compact-summary-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media screen and (max-width:600px){
+  .compact-summary-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+
+/* VERSION 5.2 CONSOLIDATED AMENDMENT BOXES */
+@media print{
+  body.printing-submission .document-amendment{
+    break-before:auto!important;
+    page-break-before:auto!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+    margin:0 0 4mm!important;
+    padding:4mm 4.5mm!important;
+    border-width:.35mm!important;
+    border-left-width:1.6mm!important;
+    border-radius:2.2mm!important;
+    font-size:9.3pt!important;
+    line-height:1.3!important;
+  }
+  body.printing-submission .pdf-body .document-amendment:first-of-type{
+    break-before:auto!important;
+    page-break-before:auto!important;
+  }
+  body.printing-submission .document-amendment-top{gap:4mm!important}
+  body.printing-submission .document-amendment h2{
+    margin:.5mm 0 1.8mm!important;
+    font-size:12.3pt!important;
+    line-height:1.14!important;
+  }
+  body.printing-submission .document-amendment-number{
+    margin-bottom:.5mm!important;
+    font-size:7.5pt!important;
+  }
+  body.printing-submission .document-position-badge{
+    padding:1.2mm 2.7mm!important;
+    font-size:7.2pt!important;
+  }
+  body.printing-submission .document-subsection{margin:2.2mm 0 0!important}
+  body.printing-submission .document-subsection h3{
+    margin:0 0 1mm!important;
+    font-size:9.7pt!important;
+  }
+  body.printing-submission .document-subsection ul{padding-left:5mm!important}
+  body.printing-submission .document-subsection li{margin:.65mm 0!important}
+  body.printing-submission .document-signoff{
+    break-before:auto!important;
+    page-break-before:auto!important;
+    margin-top:7mm!important;
+    padding:5mm 4.5mm 0!important;
+  }
+}
+
+
+/* VERSION 5.2.1 COVER PAGE FIX */
+@media print{
+  body.printing-submission .pdf-cover{
+    box-sizing:border-box!important;
+    height:257mm!important;
+    min-height:257mm!important;
+    max-height:257mm!important;
+    overflow:hidden!important;
+    margin:0!important;
+    padding:0!important;
+    break-after:page!important;
+    page-break-after:always!important;
+  }
+  body.printing-submission .pdf-cover-inner{
+    box-sizing:border-box!important;
+    height:249mm!important;
+    min-height:249mm!important;
+    max-height:249mm!important;
+    margin:0!important;
+    padding:12mm 10mm 9mm!important;
+    justify-content:flex-start!important;
+  }
+  body.printing-submission .pdf-cover h1{
+    margin:7mm 0 3.5mm!important;
+    font-size:28pt!important;
+    line-height:1.05!important;
+  }
+  body.printing-submission .pdf-cover-subtitle{
+    margin:0!important;
+    font-size:12.5pt!important;
+  }
+  body.printing-submission .pdf-cover-details{
+    margin-top:12mm!important;
+    padding:6mm!important;
+    gap:4mm 8mm!important;
+  }
+  body.printing-submission .pdf-cover-meta{
+    margin-top:auto!important;
+    padding-top:6mm!important;
+    padding-bottom:0!important;
+    font-size:8.5pt!important;
+  }
+}
+
+
+/* Version 5.3 PDF/email workflow */
+.pdf-workflow-note{
+  margin-top:18px;
+  padding:14px 16px;
+  border-left:5px solid var(--blue);
+  border-radius:9px;
+  background:#edf5fa;
+  color:var(--ink);
+}
+.pdf-workflow-note strong{display:block;margin-bottom:4px}
+
+
+/* Version 5.4 in-app browser guidance */
+.in-app-warning{
+  margin:16px 0 0;
+  padding:15px 16px;
+  border:2px solid #c38b32;
+  border-left-width:6px;
+  border-radius:11px;
+  background:#fff6df;
+  color:#4c3914;
+}
+.in-app-warning strong{display:block;margin-bottom:5px}
+.small-btn{margin-top:10px;padding:8px 12px;font-size:.86rem}
+
+
+/* Version 5.6 independent notice and local generation counter */
+.before-you-begin{
+  margin:16px 0 18px;
+  padding:18px;
+  border:2px solid var(--blue);
+  border-left-width:6px;
+  border-radius:12px;
+  background:#edf5fa;
+}
+.before-you-begin h3{margin:0 0 8px}
+.before-you-begin p{margin:7px 0}
+.before-you-begin ol{margin:10px 0;padding-left:22px}
+.before-you-begin li{margin:6px 0}
+.small-note{font-size:.9rem;color:var(--muted)}
+.generated-counter{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:16px 0 4px;
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#f8faf8;
+}
+.generated-counter strong{
+  min-width:42px;
+  font-size:1.55rem;
+  color:var(--green);
+  text-align:center;
+}
+.generated-counter span{
+  color:var(--muted);
+  font-weight:700;
+}
+.compact-counter{margin-top:16px}
+
+
+/* Version 5.7 shared community counter */
+.counter-disclaimer{
+  margin:6px 0 16px;
+  color:var(--muted);
+  font-size:.83rem;
+  line-height:1.4;
+}
+.generated-counter strong{
+  font-variant-numeric:tabular-nums;
+}
+
+
+/* Version 6.0 public-release final-section formatting */
+.document-final-list{
+  margin:12px 0 0;
+  padding-left:22px;
+}
+.document-final-list li{
+  margin:8px 0;
+  line-height:1.45;
+}
+
+@media print{
+  body.printing-submission .document-final-list{
+    margin:3mm 0 0!important;
+    padding-left:5.5mm!important;
+  }
+  body.printing-submission .document-final-list li{
+    margin:1.4mm 0!important;
+    line-height:1.35!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+}
