@@ -833,3 +833,27 @@ footer{padding:26px 4px 45px;color:var(--muted);font-size:.9rem}
 .generated-counter strong{
   font-variant-numeric:tabular-nums;
 }
+
+
+/* Version 6.0 public-release final-section formatting */
+.document-final-list{
+  margin:12px 0 0;
+  padding-left:22px;
+}
+.document-final-list li{
+  margin:8px 0;
+  line-height:1.45;
+}
+
+@media print{
+  body.printing-submission .document-final-list{
+    margin:3mm 0 0!important;
+    padding-left:5.5mm!important;
+  }
+  body.printing-submission .document-final-list li{
+    margin:1.4mm 0!important;
+    line-height:1.35!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+}

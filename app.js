@@ -174,18 +174,18 @@ function buildSubmission(){
  if(state.suggestions)allFurther.push(state.suggestions);
  if(allFurther.length){
    text.push("----------------------------------------------------------------","FURTHER SUGGESTIONS","");
-   allFurther.forEach(v=>text.push("- "+v));
+   allFurther.forEach(v=>text.push("• "+v));
    text.push("");
-   sections.push({type:"further",title:"Further suggestions",body:allFurther.map(v=>"• "+v).join("\\n")});
+   sections.push({type:"further",title:"Further suggestions",items:allFurther});
  }
 
  const allClosing=[...(state.selectedClosingSuggestions||[])];
  if(state.closing)allClosing.push(state.closing);
  if(allClosing.length){
    text.push("CLOSING COMMENTS","");
-   allClosing.forEach(v=>text.push("- "+v));
+   allClosing.forEach(v=>text.push("• "+v));
    text.push("");
-   sections.push({type:"closing",title:"Closing comments",body:allClosing.map(v=>"• "+v).join("\\n")});
+   sections.push({type:"closing",title:"Closing comments",items:allClosing});
  }
 
  text.push("Thank you for considering my submission.");
@@ -267,9 +267,13 @@ function renderDocument(doc,targetId,forPrint=false){
    </section>`;
  }).join("");
 
- const furtherHtml=doc.sections.filter(s=>s.type==="further"||s.type==="closing").map(s=>
-   `<section class="document-amendment position-neutral"><h2>${esc(s.title)}</h2><p>${esc(s.body).replace(/\n/g,"<br>")}</p></section>`
- ).join("");
+ const furtherHtml=doc.sections.filter(s=>s.type==="further"||s.type==="closing").map(s=>{
+   const items=Array.isArray(s.items)?s.items:[s.body].filter(Boolean);
+   return `<section class="document-amendment position-neutral">
+     <h2>${esc(s.title)}</h2>
+     ${items.length?`<ul class="document-final-list">${items.map(item=>`<li>${esc(item)}</li>`).join("")}</ul>`:""}
+   </section>`;
+ }).join("");
 
  target.innerHTML=`<div class="document-page">
    ${coverHtml}
