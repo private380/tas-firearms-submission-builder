@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "communityParticipation": {
+      "generatedSubmissions": {
+        ".read": true,
+        ".write": false
+      }
+    },
+    "communityResults": {
+      ".read": true,
+      ".write": false
+    }
+  }
+}
