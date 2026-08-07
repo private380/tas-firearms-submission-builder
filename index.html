@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="Anonymous community results from the Tas Firearms Submission Builder consultation project.">
+  <title>Tas Firearms Consultation Results</title>
+  <link rel="stylesheet" href="styles.css?v=2.0">
+</head>
+<body>
+<header class="hero">
+  <div class="shell">
+    <div class="eyebrow">Tas Firearms Amendment Guide · Post-consultation report</div>
+    <h1>Community Results</h1>
+    <p class="hero-copy">Anonymous aggregate responses recorded through the Tas Firearms Submission Builder during the 2026 consultation.</p>
+    <div class="closed-pill">Consultation closed · 5 pm Friday 7 August 2026</div>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="card intro-card keep-together">
+    <div>
+      <h2>The consultation has closed</h2>
+      <p>The submission builder has now been retired. This page preserves the anonymous aggregate results recorded by the independent builder and presents them as a public post-consultation report.</p>
+      <p class="method-note"><strong>Important:</strong> these figures represent submissions <em>generated as PDFs through this builder</em>. They are not an official government submission count and do not prove that every generated PDF was ultimately lodged.</p>
+    </div>
+    <div class="intro-actions">
+      <a class="btn secondary" href="https://private380.github.io/tas-firearms-amendment-guide/" target="_blank" rel="noopener">Read Amendment Guide</a>
+      <button class="btn primary" id="printBtn" type="button">Print / Save Report as PDF</button>
+    </div>
+  </section>
+
+  <section class="stats-grid keep-together" aria-label="Participation summary">
+    <div class="stat-card">
+      <span>PDFs generated</span>
+      <strong id="generatedTotal">—</strong>
+      <small>Independent builder total</small>
+    </div>
+    <div class="stat-card">
+      <span>Anonymous result records</span>
+      <strong id="recordedTotal">—</strong>
+      <small>Aggregate result records</small>
+    </div>
+    <div class="stat-card">
+      <span>Amendments surveyed</span>
+      <strong>21</strong>
+      <small>Support · Oppose · Unsure · No comment</small>
+    </div>
+  </section>
+
+  <section class="card executive keep-together">
+    <div class="kicker">Executive summary</div>
+    <h2>Key findings</h2>
+    <div id="keyFindings" class="finding-grid">
+      <div class="loading">Loading summary…</div>
+    </div>
+  </section>
+
+  <section class="card" id="overviewSection">
+    <div class="section-head keep-together">
+      <div>
+        <div class="kicker">At a glance</div>
+        <h2>Amendment results</h2>
+        <p class="muted">Percentages are calculated from the recorded responses for each amendment.</p>
+      </div>
+      <div class="legend" aria-label="Chart legend">
+        <span><i class="swatch support"></i>Support</span>
+        <span><i class="swatch oppose"></i>Oppose</span>
+        <span><i class="swatch unsure"></i>Unsure</span>
+        <span><i class="swatch no-comment"></i>No comment</span>
+      </div>
+    </div>
+    <div id="amendmentResults" class="amendment-results">
+      <div class="loading">Loading anonymous results…</div>
+    </div>
+  </section>
+
+  <section class="two-col">
+    <section class="card keep-together">
+      <div class="kicker">Strongest opposition</div>
+      <h2>Most-opposed proposals</h2>
+      <p class="muted">Ranked by the percentage of recorded responses selecting Oppose.</p>
+      <div id="mostOpposed" class="rank-list"><div class="loading">Loading…</div></div>
+    </section>
+
+    <section class="card keep-together">
+      <div class="kicker">Strongest support</div>
+      <h2>Most-supported proposals</h2>
+      <p class="muted">Ranked by the percentage of recorded responses selecting Support.</p>
+      <div id="mostSupported" class="rank-list"><div class="loading">Loading…</div></div>
+    </section>
+  </section>
+
+  <section class="two-col">
+    <section class="card keep-together">
+      <div class="kicker">Broader policy ideas</div>
+      <h2>Most-selected further suggestions</h2>
+      <p class="muted">Only predefined suggestions selected in the builder were aggregated. Free-text comments were not stored.</p>
+      <div id="furtherSuggestions" class="rank-list"><div class="loading">Loading…</div></div>
+    </section>
+
+    <section class="card keep-together">
+      <div class="kicker">Closing themes</div>
+      <h2>Most-selected closing statements</h2>
+      <p class="muted">Counts show how many recorded submissions selected each predefined statement.</p>
+      <div id="closingSuggestions" class="rank-list"><div class="loading">Loading…</div></div>
+    </section>
+  </section>
+
+  <section class="card methodology keep-together">
+    <div class="kicker">Methodology</div>
+    <h2>How these figures were collected</h2>
+    <div class="method-grid">
+      <div>
+        <h3>What was stored</h3>
+        <p>For each recorded submission, the builder added anonymous aggregate counts for the selected position on each amendment and for selected predefined broader suggestions and closing statements.</p>
+      </div>
+      <div>
+        <h3>What was not stored</h3>
+        <p>The aggregate dataset did not store names, email addresses, PDF files, free-text comments, or amendment-level reason selections.</p>
+      </div>
+      <div>
+        <h3>When a result was counted</h3>
+        <p>The result was recorded when a user selected <strong>Save submission as PDF</strong>. The builder attempted to prevent the same unchanged submission from being counted repeatedly on the same device.</p>
+      </div>
+      <div>
+        <h3>Interpretation</h3>
+        <p>This is evidence of the views expressed by people who used this independent tool. It should not be presented as a representative poll of Tasmania or as an official consultation outcome.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card about keep-together">
+    <div class="kicker">About this project</div>
+    <h2>Independent submission-assistance project</h2>
+    <p><strong>This website is independent and is not operated by, endorsed by or connected to any Tasmanian Government department.</strong></p>
+    <p>The purpose of publishing the aggregate results is to preserve transparent evidence of how users of the builder responded to the proposals after the consultation closed.</p>
+  </section>
+
+  <div id="errorBox" class="error-box hidden"></div>
+
+  <section id="printReport" class="print-report" aria-hidden="true">
+    <div class="print-cover">
+      <div class="print-kicker">Post-consultation report</div>
+      <h1>Tas Firearms Consultation Results</h1>
+      <p>Anonymous aggregate responses recorded through the Tas Firearms Submission Builder during the 2026 consultation.</p>
+      <div class="print-cover-meta">
+        <div><span>Consultation closed</span><strong>5 pm Friday 7 August 2026</strong></div>
+        <div><span>Amendments surveyed</span><strong>21</strong></div>
+        <div><span>Report status</span><strong>Final aggregate results</strong></div>
+      </div>
+      <p class="print-disclaimer"><strong>Important:</strong> these figures represent submissions generated as PDFs through this independent builder. They are not an official government submission count and do not establish that every generated PDF was lodged.</p>
+    </div>
+
+    <section class="print-section print-summary-page">
+      <div class="print-kicker">Executive summary</div>
+      <h2>Key findings</h2>
+      <div id="printStats" class="print-stats"></div>
+      <div id="printFindings" class="print-findings"></div>
+    </section>
+
+    <section class="print-section">
+      <div class="print-kicker">Detailed results</div>
+      <h2>Amendment-by-amendment results</h2>
+      <p class="print-intro">Each table shows the recorded response distribution for one amendment. Percentages are calculated from the recorded responses for that amendment.</p>
+      <div id="printAmendments" class="print-amendments"></div>
+    </section>
+
+    <section class="print-section print-page-break">
+      <div class="print-kicker">Broader themes</div>
+      <h2>Most-selected further suggestions</h2>
+      <div id="printFurther" class="print-ranked"></div>
+
+      <h2 class="print-subheading">Most-selected closing statements</h2>
+      <div id="printClosing" class="print-ranked"></div>
+    </section>
+
+    <section class="print-section print-page-break">
+      <div class="print-kicker">Methodology</div>
+      <h2>How these figures were collected</h2>
+      <div class="print-method">
+        <p><strong>What was stored:</strong> anonymous aggregate counts for the selected position on each amendment, plus selected predefined broader suggestions and closing statements.</p>
+        <p><strong>What was not stored:</strong> names, email addresses, PDF files, free-text comments, or amendment-level reason selections.</p>
+        <p><strong>When a result was counted:</strong> when a user selected <em>Save submission as PDF</em>. The builder attempted to prevent the same unchanged submission from being counted repeatedly on the same device.</p>
+        <p><strong>Interpretation:</strong> these figures describe users of this independent tool. They are not a representative poll of Tasmania and are not the official consultation outcome.</p>
+      </div>
+
+      <div class="print-about">
+        <h2>About this project</h2>
+        <p><strong>This website is independent and is not operated by, endorsed by or connected to any Tasmanian Government department.</strong></p>
+        <p>The purpose of publishing the aggregate results is to preserve transparent evidence of how users of the builder responded to the proposals after the consultation closed.</p>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <strong>Tas Firearms Consultation Results</strong>
+    <span>Independent community reporting · Consultation closed 7 August 2026</span>
+  </div>
+</footer>
+
+<script src="data.js?v=2.0"></script>
+<script type="module" src="results.js?v=2.0"></script>
+</body>
+</html>
